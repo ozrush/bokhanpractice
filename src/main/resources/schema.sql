@@ -4,10 +4,10 @@ CREATE TABLE IF NOT EXISTS Organisation
     version   INTEGER      NOT NULL COMMENT 'Служебное поле hibernate',
     name      VARCHAR(50)  NOT NULL COMMENT 'Наименование',
     full_name VARCHAR(100) NOT NULL COMMENT 'Полное имя',
-    inn       BIGINT(10)   NOT NULL COMMENT 'ИНН',
-    kpp       BIGINT(9)    NOT NULL COMMENT 'КПП',
+    inn       VARCHAR(10)   NOT NULL COMMENT 'ИНН',
+    kpp       VARCHAR(9)    NOT NULL COMMENT 'КПП',
     address   VARCHAR(150) NOT NULL COMMENT 'Адрес',
-    phone     BIGINT(11) COMMENT 'Телефон',
+    phone     VARCHAR(11) COMMENT 'Телефон',
     is_active BOOLEAN COMMENT 'Действует'
 );
 COMMENT ON TABLE Organisation IS 'Организация';
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS Office
     version   INTEGER      NOT NULL COMMENT 'Служебное поле hibernate',
     name      VARCHAR(50)  NOT NULL COMMENT 'Наименование',
     address   VARCHAR(150) NOT NULL COMMENT 'Адрес',
-    phone     BIGINT(11) COMMENT 'Телефон',
+    phone     VARCHAR(11) COMMENT 'Телефон',
     org_id    INTEGER      NOT NULL COMMENT 'Уникальный идентификатор организации',
     is_active BOOLEAN COMMENT 'Действует',
     FOREIGN KEY (org_id) REFERENCES Organisation (id)
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS User
     last_name     VARCHAR(50) NOT NULL COMMENT 'Фамилия',
     middle_name   VARCHAR(50) NOT NULL COMMENT 'Отчество?',
     position      VARCHAR(20) COMMENT 'Должность',
-    phone         BIGINT(11) COMMENT 'Номер телефона',
+    phone         VARCHAR(11) COMMENT 'Номер телефона',
     country_id    INTEGER     NOT NULL COMMENT 'Уникальный идентификатор страны',
     office_id     INTEGER     NOT NULL COMMENT 'Уникальный идентификатор офиса',
     is_identified BOOLEAN COMMENT 'Идентифицирован',
@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS Document_type
     id      INTEGER COMMENT 'Уникальный идентификатор' PRIMARY KEY AUTO_INCREMENT,
     version INTEGER     NOT NULL COMMENT 'Служебное поле hibernate',
     name    VARCHAR(25) NOT NULL COMMENT 'Название типа документа',
-    CONSTRAINT UX_Document_name UNIQUE (name)
+    code    INTEGER(2)  NOT NULL COMMENT 'Код документа',
+    CONSTRAINT UX_Document_name_code UNIQUE (name, code)
 );
 COMMENT ON TABLE Document_type IS 'Тип документа';
 
