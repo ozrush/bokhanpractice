@@ -15,6 +15,7 @@
 		<encoding>UTF-8</encoding>
 		<swagger.version>2.2.2</swagger.version>
 		<orika.mapper.version>1.5.2</orika.mapper.version>
+		<lombok.version>1.16.22</lombok.version>
 	</properties>
 
 	<parent>
@@ -86,6 +87,11 @@
 			<version>${swagger.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

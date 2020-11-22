@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS Document
     user_id     INTEGER COMMENT 'Уникальный идентификатор пользователя' PRIMARY KEY,
     version     INTEGER NOT NULL COMMENT 'Служебное поле hibernate',
     doc_type_id INTEGER COMMENT 'Уникальный идентификатор типа документа',
-    doc_number  BIGINT(15) COMMENT 'Номер документа',
+    doc_number  VARCHAR(15) NOT NULL COMMENT 'Номер документа',
     doc_date    DATE COMMENT 'Дата выдачи документа',
     FOREIGN KEY (doc_type_id) REFERENCES Document_type (id),
     FOREIGN KEY (user_id) REFERENCES User (id)
